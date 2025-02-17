@@ -6,7 +6,6 @@
 
 #include <rendering/window/model/model.hpp>
 #include <rendering/window/texture/texture.hpp>
-#include <rendering/window/VBO/VBO.hpp>
 
 /**
  * @brief Runs the main loop for the simulation.

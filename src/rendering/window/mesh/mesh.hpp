@@ -2,10 +2,15 @@
 
 #include <string>
 #include <vector>
-#include <rendering/window/VAO/VAO.hpp>
-#include <rendering/window/EBO/EBO.hpp>
 #include <rendering/window/texture/texture.hpp>
 #include <camera/camera.hpp>
+
+struct Vertex {
+    glm::vec3 position;
+    glm::vec3 normal;
+    glm::vec3 colour;
+    glm::vec2 textureCoords;
+};
 
 class Mesh {
     public:
@@ -13,7 +18,9 @@ class Mesh {
         std::vector<unsigned int> indices;
         std::vector<Texture> textures;
 
-        VAO vao;
+        unsigned int VAO;
+        unsigned int VBO;
+        unsigned int EBO;
 
         Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures);
 
