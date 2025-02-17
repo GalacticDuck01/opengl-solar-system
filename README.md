@@ -1,1 +1,1 @@
-# opengl-solar-system
+# solar-system

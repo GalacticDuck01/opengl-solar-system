@@ -30,3 +30,16 @@
 *.exe
 *.out
 *.app
+
+# Ignore .vscode
+.vscode/
+
+# Ignore bin, build, include and lib
+bin/
+build/
+include/
+lib/
+deps/
+
+# Ignore .DS_Store
+.DS_Store

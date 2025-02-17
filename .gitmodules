@@ -1,0 +1,20 @@
+[submodule "glad"]
+	path = deps/glad
+	url = https://github.com/Dav1dde/glad.git
+	branch = c
+[submodule "glfw"]
+	path = deps/glfw
+	url = https://github.com/glfw/glfw.git
+	branch = master
+[submodule "glm"]
+	path = deps/glm
+	url = https://github.com/g-truc/glm.git
+	branch = master
+[submodule "stb"]
+	path = deps/stb
+	url = https://github.com/nothings/stb.git
+	branch = master
+[submodule "json"]
+	path = deps/json
+	url = https://github.com/nlohmann/json
+	branch = master
