@@ -4,7 +4,6 @@
 #include <math.h>
 #include <vector>
 
-#include <Rendering/Window/Model/Model.hpp>
 #include <Rendering/Window/Texture/Texture.hpp>
 #include <Simulation/Icosphere/Icosphere.hpp>
 
@@ -21,8 +20,6 @@ void Simulation::Run() {
     glm::vec3 lightPos = glm::vec3(2.0f, 2.0f, 2.0f);
     glm::mat4 lightModel = glm::mat4(1.0f);
     lightModel = glm::translate(lightModel, lightPos);
-
-    Model bunnyModel = Model("C:/Users/samru/Desktop/code/opengl-solar-system/resources/models/bunny/scene.gltf");
 
     Icosphere icosphere(glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, 3);
 
