@@ -31,7 +31,7 @@ vec4 PointLight() {
     float specularAmount = pow(max(dot(viewDirection, reflectDirection), 0.0), 32.0);
     float specular = specularAmount*specularLight;
 
-    return lightColour*((intensity*diffuse + ambient)*texture(diffuse0, texCoord) + intensity*specular*texture(specular0, texCoord).r);
+    return vec4(colour, 1.0)*lightColour*((intensity*diffuse + ambient)*texture(diffuse0, texCoord) + intensity*specular*texture(specular0, texCoord).r);
 }
 
 vec4 DirectionalLight() {
@@ -46,7 +46,7 @@ vec4 DirectionalLight() {
     float specularAmount = pow(max(dot(viewDirection, reflectDirection), 0.0), 32.0);
     float specular = specularAmount*specularLight;
 
-    return lightColour*((diffuse + ambient)*texture(diffuse0, texCoord) + specular*texture(specular0, texCoord).r);
+    return vec4(colour, 1.0)*lightColour*((diffuse + ambient)*texture(diffuse0, texCoord) + specular*texture(specular0, texCoord).r);
 }
 
 vec4 SpotLight() {
@@ -70,7 +70,7 @@ vec4 SpotLight() {
     float angle = dot(vec3(0.0, -1.0, 0.0), -lightDirection);
     float intensity = clamp((angle - outerCone)/(innerCone - outerCone), 0.0, 1.0);
 
-    return lightColour*((intensity*diffuse + ambient)*texture(diffuse0, texCoord) + intensity*specular*texture(specular0, texCoord).r);
+    return vec4(colour, 1.0)*lightColour*((intensity*diffuse + ambient)*texture(diffuse0, texCoord) + intensity*specular*texture(specular0, texCoord).r);
 }
 
 void main() {

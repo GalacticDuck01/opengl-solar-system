@@ -6,6 +6,7 @@
 
 #include <Rendering/Window/Model/Model.hpp>
 #include <Rendering/Window/Texture/Texture.hpp>
+#include <Simulation/Icosphere/Icosphere.hpp>
 
 /**
  * @brief Runs the main loop for the simulation.
@@ -14,14 +15,16 @@
  * It is responsible for processing any user input to the window.
  */
 void Simulation::Run() {
-    Shader shaderProgram("C:/Users/samru/Desktop/code/opengl-work-in-progress/shaders/default.vert", "C:/Users/samru/Desktop/code/opengl-work-in-progress/shaders/default.frag");
+    Shader shaderProgram("C:/Users/samru/Desktop/code/opengl-solar-system/shaders/default.vert", "C:/Users/samru/Desktop/code/opengl-solar-system/shaders/default.frag");
 
     glm::vec4 lightColour = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-    glm::vec3 lightPos = glm::vec3(0.5f, 0.5f, 0.5f);
+    glm::vec3 lightPos = glm::vec3(2.0f, 2.0f, 2.0f);
     glm::mat4 lightModel = glm::mat4(1.0f);
     lightModel = glm::translate(lightModel, lightPos);
 
-    Model bunnyModel = Model("C:/Users/samru/Desktop/code/opengl-work-in-progress/resources/models/bunny/scene.gltf");
+    Model bunnyModel = Model("C:/Users/samru/Desktop/code/opengl-solar-system/resources/models/bunny/scene.gltf");
+
+    Icosphere icosphere(glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, 3);
 
     shaderProgram.Activate();
     glUniform4f(glGetUniformLocation(shaderProgram.programID, "lightColour"), lightColour.x, lightColour.y, lightColour.z, lightColour.w);
@@ -51,7 +54,7 @@ void Simulation::Run() {
 
         camera.HandleInputs(window.window, deltaTime);
         
-        window.Render(camera, bunnyModel, shaderProgram);
+        window.Render(camera, icosphere.mesh, shaderProgram);
     }
 
     shaderProgram.Delete();

@@ -6,7 +6,7 @@
 #include <GLFW/glfw3.h>
 
 #include <Camera/Camera.hpp>
-#include <Rendering/Window/Model/Model.hpp>
+#include <Rendering/Window/Mesh/Mesh.hpp>
 
 class Window {
     private:
@@ -30,5 +30,5 @@ class Window {
         Window& operator=(const Window&) = delete;
 
         bool ShouldClose() { return glfwWindowShouldClose(window); }
-        void Render(Camera& camera, Model& model, Shader& shader);
+        void Render(Camera& camera, Mesh& mesh, Shader& shader);
 };

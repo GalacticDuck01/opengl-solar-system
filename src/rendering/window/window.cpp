@@ -75,13 +75,13 @@ void Window::InitWindow() {
     glCheckError();
 }
 
-void Window::Render(Camera& camera, Model& model, Shader& shader) {
+void Window::Render(Camera& camera, Mesh& mesh, Shader& shader) {
     glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     camera.UpdateMatrix(45.0f, 0.1f, 100.0f);
 
-    model.Draw(shader, camera);
+    mesh.Draw(shader, camera);
 
     glfwSwapBuffers(window);
 

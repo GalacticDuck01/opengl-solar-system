@@ -2,7 +2,7 @@
 #include <iostream>
 #include <stdexcept>
 
-#include <simulation/simulation.hpp>
+#include <Simulation/Simulation.hpp>
 
 /**
  * @brief Entry point of the program.
@@ -22,4 +22,6 @@ int main() {
         std::cerr << e.what() << '\n';
         return EXIT_FAILURE;
     }
+
+    return EXIT_SUCCESS;
 }
