@@ -24,7 +24,8 @@ private:
     std::vector<vec3> vertices;
     std::vector<vec3> normals;
     std::vector<TriIndex> triangles;
-    
+
+    int shaderID;
 
     void GenerateIcosphere();
     void UpdateMesh();
@@ -39,6 +40,8 @@ public:
     Icosphere(vec3 position, float radius, int resolution);
     ~Icosphere() {};
 
+    void SetShader(int shaderID) {this->shaderID =shaderID;};
+    int GetShader() {return shaderID;};
     void Draw(Shader& shader, Camera& camera) {mesh.Draw(shader, camera);};
 
 };

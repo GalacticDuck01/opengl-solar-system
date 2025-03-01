@@ -30,5 +30,4 @@ class Window {
         Window& operator=(const Window&) = delete;
 
         bool ShouldClose() { return glfwWindowShouldClose(window); }
-        void Render(Camera& camera, Mesh& mesh, Shader& shader);
 };
