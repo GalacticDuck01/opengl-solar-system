@@ -12,6 +12,7 @@ void Camera::UpdateMatrix(float FOVdeg, float nearPlane, float farPlane) {
 
     view = glm::lookAt(position, position + orientation, up);
 
+    // Use FoV angle from larger dimension, see https://stackoverflow.com/questions/26997631/limiting-fov-both-horizontally-and-vertically
     float tanFov = tan(0.5f * FOVdeg*3.14159f/180.0f);
     float oneTanFov = 1.0f / tanFov;
     float aspRat = (float)width / (float)height;
