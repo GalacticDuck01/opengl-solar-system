@@ -14,7 +14,7 @@
  * It is responsible for processing any user input to the window.
  */
 void Simulation::Run() {
-    Shader shaderProgram("C:/Users/samru/Desktop/code/opengl-solar-system/shaders/default.vert", "C:/Users/samru/Desktop/code/opengl-solar-system/shaders/default.frag");
+    Shader shaderProgram("shaders/default.vert", "shaders/default.frag");
 
     glm::vec4 lightColour = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
     glm::vec3 lightPos = glm::vec3(2.0f, 2.0f, 2.0f);
