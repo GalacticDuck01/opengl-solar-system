@@ -16,7 +16,13 @@ void Camera::UpdateMatrix(float FOVdeg, float nearPlane, float farPlane) {
     cameraMatrix = projection*view;
 }
 
-void Camera::Matrix(Shader& shader, const char* uniform) {
+/**
+ * Send the camera matrix to the given shader's uniform.
+ *
+ * @param shader The shader to send the matrix to.
+ * @param uniform The name of the uniform in the shader.
+ */
+void Camera::SendMatrixToShader(Shader& shader, const char* uniform) {
     glUniformMatrix4fv(glGetUniformLocation(shader.programID, uniform), 1, GL_FALSE, glm::value_ptr(cameraMatrix));
 }
 
