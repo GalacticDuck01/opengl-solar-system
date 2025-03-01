@@ -11,7 +11,32 @@ void Camera::UpdateMatrix(float FOVdeg, float nearPlane, float farPlane) {
     glm::mat4 projection = glm::mat4(1.0f);
 
     view = glm::lookAt(position, position + orientation, up);
-    projection = glm::perspective(glm::radians(FOVdeg), float(width/height), nearPlane, farPlane);
+
+    float tanFov = tan(0.5f * FOVdeg*3.14159f/180.0f);
+    float oneTanFov = 1.0f / tanFov;
+    float aspRat = (float)width / (float)height;
+    float oneTanAspRat = 1.0f/(tanFov*aspRat);
+
+    projection[0][0] = 1.0f / (aspRat * tanFov);
+    projection[0][1] = 0.0f;
+    projection[0][2] = 0.0f;
+    projection[0][3] = 0.0f;
+
+    projection[1][0] = 0.0f;
+    projection[1][1] = 1.0f / tanFov;
+    projection[1][2] = 0.0f;
+    projection[1][3] = 0.0f;
+
+    projection[2][0] = 0.0f;
+    projection[2][1] = 0.0f;
+    projection[2][2] = (nearPlane + farPlane) / (nearPlane - farPlane);
+    projection[2][3] = -1.0f;
+
+    projection[3][0] = 0.0f;
+    projection[3][1] = 0.0f;
+    projection[3][2] = 2.0f * nearPlane * farPlane / (nearPlane - farPlane);
+    projection[3][3] = 0.0f;
+
 
     cameraMatrix = projection*view;
 }

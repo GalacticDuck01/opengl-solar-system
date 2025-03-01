@@ -30,8 +30,6 @@ void Simulation::Run() {
     glUniform4f(glGetUniformLocation(shaderProgram.programID, "lightColour"), lightColour.x, lightColour.y, lightColour.z, lightColour.w);
     glUniform3f(glGetUniformLocation(shaderProgram.programID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
 
-    Camera camera(window.width, window.height, glm::vec3(0.0f, 0.0f, 2.0f));
-
     double previousTime = 0.0f;
     double currentTime = 0.0f;
     double deltaTime = 0.0f;
@@ -53,6 +51,10 @@ void Simulation::Run() {
         previousTime = currentTime;
 
         camera.HandleInputs(window.window, deltaTime);
+
+        // Check if the window has changed size
+        glfwGetFramebufferSize(window.window, &camera.width, &camera.height);
+        camera.UpdateMatrix(45.0f, 0.1f, 100.0f);
         
         window.Render(camera, icosphere.mesh, shaderProgram);
     }
