@@ -125,7 +125,7 @@ void Icosphere::UpdateMesh() {
         indices.push_back(tri.index2);
     }
 
-    Texture texture("C:/Users/samru/Desktop/code/opengl-solar-system/resources/textures/brick.png", TextureType::DIFFUSE, 0);
+    Texture texture("resources/textures/blank.png", TextureType::DIFFUSE, 0);
     textures.push_back(texture);
 
     mesh = Mesh(meshVertices, indices, textures);
