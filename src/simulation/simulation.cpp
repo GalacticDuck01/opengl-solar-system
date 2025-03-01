@@ -41,7 +41,7 @@ void Simulation::Run() {
         timeSinceFPSUpdate += deltaTime;
         if (timeSinceFPSUpdate >= 1.0f) {
             FPS = (int)(1.0f/deltaTime);
-            title = "OpenGL Window - FPS: " + std::to_string(FPS);
+            title = "Solar System Simulation | " + std::to_string(window.width) + " x " + std::to_string(window.height) + " | FPS: " + std::to_string(FPS);
             glfwSetWindowTitle(window.window, title.c_str());
             timeSinceFPSUpdate = 0.0f;
         }
@@ -50,6 +50,7 @@ void Simulation::Run() {
         camera.HandleInputs(window.window, deltaTime);
 
         // Check if the window has changed size
+        glfwGetFramebufferSize(window.window, &window.width, &window.height);
         glfwGetFramebufferSize(window.window, &camera.width, &camera.height);
         camera.UpdateMatrix(45.0f, 0.1f, 100.0f);
         
