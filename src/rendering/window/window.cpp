@@ -1,4 +1,4 @@
-#include <rendering/window/window.hpp>
+#include <Rendering/Window/Window.hpp>
 
 #include <iostream>
 #include <tuple>
@@ -7,7 +7,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include <utilities/utilities.hpp>
+#include <Utilities/Utilities.hpp>
 
 Window::Window(int width, int height, std::string name) {
     this->width = width;

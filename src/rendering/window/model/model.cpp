@@ -1,4 +1,4 @@
-#include <rendering/window/model/model.hpp>
+#include <Rendering/Window/Model/Model.hpp>
 
 Model::Model(const char* modelFilePath) {
     std::string contents = ReadFile(modelFilePath);

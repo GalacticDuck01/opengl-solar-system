@@ -1,6 +1,6 @@
 #pragma once
 
-#include <rendering/window/window.hpp>
+#include <Rendering/Window/Window.hpp>
 
 class Simulation {
     private:

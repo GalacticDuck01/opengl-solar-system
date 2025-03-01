@@ -1,6 +1,6 @@
-#include <rendering/window/mesh/mesh.hpp>
+#include <Rendering/Window/Mesh/Mesh.hpp>
 
-#include <utilities/utilities.hpp>
+#include <Utilities/Utilities.hpp>
 
 Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures) {
     this->vertices = vertices;

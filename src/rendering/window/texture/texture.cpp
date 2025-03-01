@@ -1,9 +1,9 @@
-#include <rendering/window/texture/texture.hpp>
+#include <Rendering/Window/Texture/Texture.hpp>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
-#include <utilities/utilities.hpp>
+#include <Utilities/Utilities.hpp>
 #include <fstream>
 #include <iostream>
 

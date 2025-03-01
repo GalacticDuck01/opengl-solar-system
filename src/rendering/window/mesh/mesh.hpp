@@ -2,8 +2,8 @@
 
 #include <string>
 #include <vector>
-#include <rendering/window/texture/texture.hpp>
-#include <camera/camera.hpp>
+#include <Rendering/Window/Texture/Texture.hpp>
+#include <Camera/Camera.hpp>
 
 struct Vertex {
     glm::vec3 position;

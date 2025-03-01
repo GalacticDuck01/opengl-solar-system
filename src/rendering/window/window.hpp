@@ -5,8 +5,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include <camera/camera.hpp>
-#include <rendering/window/model/model.hpp>
+#include <Camera/Camera.hpp>
+#include <Rendering/Window/Model/Model.hpp>
 
 class Window {
     private:

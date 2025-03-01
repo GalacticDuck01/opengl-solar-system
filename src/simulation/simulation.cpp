@@ -1,11 +1,11 @@
-#include <simulation/simulation.hpp>
+#include <Simulation/Simulation.hpp>
 
 #include <iostream>
 #include <math.h>
 #include <vector>
 
-#include <rendering/window/model/model.hpp>
-#include <rendering/window/texture/texture.hpp>
+#include <Rendering/Window/Model/Model.hpp>
+#include <Rendering/Window/Texture/Texture.hpp>
 
 /**
  * @brief Runs the main loop for the simulation.
@@ -21,7 +21,7 @@ void Simulation::Run() {
     glm::mat4 lightModel = glm::mat4(1.0f);
     lightModel = glm::translate(lightModel, lightPos);
 
-    Model bunnyModel = Model("C:/Users/samru/Desktop/code/opengl-work-in-progress/resources/models/sword/scene.gltf");
+    Model bunnyModel = Model("C:/Users/samru/Desktop/code/opengl-work-in-progress/resources/models/bunny/scene.gltf");
 
     shaderProgram.Activate();
     glUniform4f(glGetUniformLocation(shaderProgram.programID, "lightColour"), lightColour.x, lightColour.y, lightColour.z, lightColour.w);

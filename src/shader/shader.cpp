@@ -1,9 +1,9 @@
-#include <shader/shader.hpp>
+#include <Shader/Shader.hpp>
 
 #include <string>
 #include <iostream>
 
-#include <utilities/utilities.hpp>
+#include <Utilities/Utilities.hpp>
 
 Shader::Shader(const char* vertexFilePath, const char* fragmentFilePath) {
     // Read files and store the contents.

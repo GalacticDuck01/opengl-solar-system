@@ -2,7 +2,7 @@
 
 #include <string>
 #include <glad/glad.h>
-#include <utilities/colour_output.hpp>
+#include <Utilities/ColourModifier.hpp>
 
 #define TEXT_RESET      Modifier(FG_DEFAULT)
 #define TEXT_RED        Modifier(FG_RED)

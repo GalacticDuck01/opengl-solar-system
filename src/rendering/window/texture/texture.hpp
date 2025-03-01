@@ -2,7 +2,7 @@
 
 #include <map>
 #include <glad/glad.h>
-#include <shader/shader.hpp>
+#include <Shader/Shader.hpp>
 
 enum TextureType {
     DIFFUSE,

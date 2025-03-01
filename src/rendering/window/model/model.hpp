@@ -2,8 +2,8 @@
 
 #include <vector>
 #include <json.hpp>
-#include <rendering/window/mesh/mesh.hpp>
-#include <utilities/utilities.hpp> 
+#include <Rendering/Window/Mesh/Mesh.hpp>
+#include <Utilities/Utilities.hpp> 
 
 using json = nlohmann::json;
 
