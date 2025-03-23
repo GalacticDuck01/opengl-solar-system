@@ -19,7 +19,7 @@ class Texture {
 
         const char* GetTextureTypeAsString() { return textureTypeToString[type]; }
 
-        void TexUnit(unsigned int shaderID, const char* uniform, GLuint unit);
+        void SetTextureUnit(unsigned int shaderID, const char* uniform, GLuint unit);
         void Bind();
         void Unbind();
         void Delete();

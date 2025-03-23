@@ -50,7 +50,7 @@ void Mesh::Draw(Shader& shader, Camera& camera, glm::mat4 matrix, glm::vec3 tran
             num = std::to_string(numOfSpecularTextures++);
         }
 
-        textures[i].TexUnit(shader.programID, (textures[i].GetTextureTypeAsString() + num).c_str(), i);
+        textures[i].SetTextureUnit(shader.programID, (textures[i].GetTextureTypeAsString() + num).c_str(), i);
         textures[i].Bind();
     }
     // Pass in the camera's position into the shader
