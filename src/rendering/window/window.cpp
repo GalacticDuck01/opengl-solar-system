@@ -72,8 +72,8 @@ void Window::InitWindow() {
     // Enable MSAA
     glEnable(GL_MULTISAMPLE);
 
-    // Turn off VSync
-    glfwSwapInterval(0);
+    // Turn on VSync
+    glfwSwapInterval(1);
 
     // Final check for errors
     glCheckError();
