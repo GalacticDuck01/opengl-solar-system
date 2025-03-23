@@ -20,10 +20,10 @@ class Simulation {
         std::map<int, Shader> shaders;
         std::map<int, std::vector<Mesh>> drawableObjects;
 
-        void Update(float deltaTime);
-        void Render();
-        int LoadShader(const char* vertexFilePath, const char* fragmentFilePath);
-        void AddDrawable(Icosphere icosphere);
+        void update(float deltaTime);
+        void render();
+        int loadShader(const char* vertexFilePath, const char* fragmentFilePath);
+        void addDrawable(Icosphere icosphere);
     public:
         static const int WIDTH = 1920;
         static const int HEIGHT = 1000;

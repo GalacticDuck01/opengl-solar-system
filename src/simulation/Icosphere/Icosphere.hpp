@@ -27,9 +27,9 @@ private:
 
     int shaderID;
 
-    void GenerateIcosphere();
-    void UpdateMesh();
-    int CreateNewMidpoint(int index1, int index2);
+    void generateIcosphere();
+    void updateMesh();
+    int createNewMidpoint(int index1, int index2);
 
 public:
     glm::vec3 position;

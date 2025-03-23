@@ -5,10 +5,10 @@ Icosphere::Icosphere(glm::vec3 position, float radius, int resolution) {
     this->radius = radius;
     this->resolution = resolution;
 
-    GenerateIcosphere();
+    generateIcosphere();
 }
 
-void Icosphere::GenerateIcosphere() {
+void Icosphere::generateIcosphere() {
     // Create the icosphere, very nicely sourced from http://blog.andreaskahler.com/2009/06/creating-icosphere-mesh-in-code.html
     const float t = (1.0f + sqrt(5.0f)) / 2.0f; // Golden ratio
     vertices = {
@@ -61,9 +61,9 @@ void Icosphere::GenerateIcosphere() {
             i1 = tri.index0;
             i2 = tri.index1;
             i3 = tri.index2;
-            i12 = CreateNewMidpoint(i1, i2);
-            i13 = CreateNewMidpoint(i1, i3);
-            i23 = CreateNewMidpoint(i2, i3);
+            i12 = createNewMidpoint(i1, i2);
+            i13 = createNewMidpoint(i1, i3);
+            i23 = createNewMidpoint(i2, i3);
 
             newTriangles.push_back({i1,  i12, i13});
             newTriangles.push_back({i13, i12, i23});
@@ -85,10 +85,10 @@ void Icosphere::GenerateIcosphere() {
         normals[tri.index2] += normal;
     }
 
-    UpdateMesh();
+    updateMesh();
 }
 
-int Icosphere::CreateNewMidpoint(int i1, int i2) {
+int Icosphere::createNewMidpoint(int i1, int i2) {
     vec3 v1 = vertices[i1];
     vec3 v2 = vertices[i2];
     vec3 midpoint = (v1 + v2) / 2.0f;
@@ -100,7 +100,7 @@ int Icosphere::CreateNewMidpoint(int i1, int i2) {
     return index;
 }
 
-void Icosphere::UpdateMesh() {
+void Icosphere::updateMesh() {
     std::vector<Vertex> meshVertices;
     std::vector<unsigned int> indices;
     std::vector<Texture> textures;

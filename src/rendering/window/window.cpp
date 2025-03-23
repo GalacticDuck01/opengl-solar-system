@@ -13,7 +13,7 @@ Window::Window(int width, int height, std::string name) {
     this->width = width;
     this->height = height;
     this->name = name;
-    InitWindow();
+    initWindow();
 }
 
 /**
@@ -33,7 +33,7 @@ Window::~Window() {
  * 
  * @throws std::runtime_error If the GLFW library fails to initialize.
  */
-void Window::InitWindow() {
+void Window::initWindow() {
     glfwInit(); // Initialize the GLFW library
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3); // Use OpenGL 3.3
@@ -52,7 +52,7 @@ void Window::InitWindow() {
     }
 
     glfwMakeContextCurrent(window);
-    glfwSetFramebufferSizeCallback(window, this->CallbackFrameworkSize); // Set the callback function for framebuffer size changes
+    glfwSetFramebufferSizeCallback(window, this->callbackFrameworkSize); // Set the callback function for framebuffer size changes
 
     gladLoadGL();
 
@@ -91,7 +91,7 @@ void Window::InitWindow() {
  *
  * @remarks We use the new window dimensions to update the OpenGL viewport.
  */
-void Window::CallbackFrameworkSize(GLFWwindow* window, int width, int height) {
+void Window::callbackFrameworkSize(GLFWwindow* window, int width, int height) {
     // make sure the viewport matches the new window dimensions; note that width and 
     // height will be significantly larger than specified on retina displays.
     glViewport(0, 0, width, height);
@@ -106,7 +106,7 @@ void Window::CallbackFrameworkSize(GLFWwindow* window, int width, int height) {
  * @param window The window that received the event
  * @param entered GLFW_TRUE if the cursor entered the content area of the window, otherwise GLFW_FALSE
  */
-void Window::CallbackCursorEnter(GLFWwindow* window, int entered) {
+void Window::callbackCursorEnter(GLFWwindow* window, int entered) {
     if (entered) {
         // The cursor entered the content area of the window
         glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);

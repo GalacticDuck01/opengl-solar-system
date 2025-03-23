@@ -12,10 +12,10 @@ class Window {
     private:
         std::string name;
 
-        void InitWindow();
+        void initWindow();
 
-        static void CallbackCursorEnter(GLFWwindow* window, int entered);
-        static void CallbackFrameworkSize(GLFWwindow* window, int width, int height);
+        static void callbackCursorEnter(GLFWwindow* window, int entered);
+        static void callbackFrameworkSize(GLFWwindow* window, int width, int height);
 
     public:
         GLFWwindow* window;

@@ -16,10 +16,10 @@
  * It is responsible for processing any user input to the window.
  */
 void Simulation::Run() {
-    int shaderProgram = LoadShader("shaders/default.vert", "shaders/default.frag");
+    int shaderProgram = loadShader("shaders/default.vert", "shaders/default.frag");
     Icosphere icosphere(glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, 5);
     icosphere.SetShader(shaderProgram);
-    AddDrawable(icosphere);
+    addDrawable(icosphere);
 
     glm::vec4 lightColour = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
     glm::vec3 lightPos = glm::vec3(2.0f, 2.0f, 2.0f);
@@ -35,8 +35,8 @@ void Simulation::Run() {
     while (!window.ShouldClose()) {
         currentTime = glfwGetTime();
         double deltaTime = currentTime - previousTime;
-        Update(deltaTime);
-        Render();
+        update(deltaTime);
+        render();
     }
 
     shader.Delete();
@@ -50,7 +50,7 @@ void Simulation::Run() {
  *
  * @param deltaTime the time since the last frame.
  */
-void Simulation::Update(float deltaTime) {
+void Simulation::update(float deltaTime) {
     timeSinceFPSUpdate += deltaTime;
     if (timeSinceFPSUpdate >= 1.0f) {
         int FPS = (int)(1.0f/deltaTime);
@@ -74,7 +74,7 @@ void Simulation::Update(float deltaTime) {
  * This sets the clear color and clears the color and depth buffers, updates the camera's matrix, and renders each mesh in the scene.
  * Finally, it swaps the front and back buffers and processes any pending events.
  */
-void Simulation::Render() {
+void Simulation::render() {
     glClearColor(0.71f, 0.90f, 0.95f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glCheckError();
@@ -106,7 +106,7 @@ void Simulation::Render() {
  * @param fragmentFilePath the path to the fragment shader file.
  * @return the Shader's program ID.
  */
-int Simulation::LoadShader(const char* vertexFilePath, const char* fragmentFilePath) {
+int Simulation::loadShader(const char* vertexFilePath, const char* fragmentFilePath) {
     Shader shaderProgram(vertexFilePath, fragmentFilePath);
     int id = shaderProgram.programID;
     shaders.insert(std::pair<int, Shader>(id, shaderProgram));
@@ -124,7 +124,7 @@ int Simulation::LoadShader(const char* vertexFilePath, const char* fragmentFileP
  *
  * @param icosphere The Icosphere object to be added to the drawable meshes.
  */
-void Simulation::AddDrawable(Icosphere icosphere) {
+void Simulation::addDrawable(Icosphere icosphere) {
     int id = icosphere.GetShader();
     // if shader ID not in keys, add it
     if (drawableObjects.find(id) == drawableObjects.end()) {
