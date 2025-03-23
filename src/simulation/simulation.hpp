@@ -3,6 +3,7 @@
 #include <Rendering/Window/Window.hpp>
 #include <Camera/Camera.hpp>
 #include <Simulation/Icosphere/Icosphere.hpp>
+#include <Rendering/Window/Model/Model.hpp>
 
 #include <glm/glm.hpp>
 #include <map>
@@ -19,6 +20,7 @@ class Simulation {
 
         std::map<int, Shader> shaders;
         std::map<int, std::vector<Mesh>> drawableObjects;
+        Model backpack = Model("resources/models/sword/scene.gltf");
 
         void update(float deltaTime);
         void render();

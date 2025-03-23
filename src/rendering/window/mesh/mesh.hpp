@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 #include <Rendering/Window/Texture/Texture.hpp>
 #include <Camera/Camera.hpp>
 

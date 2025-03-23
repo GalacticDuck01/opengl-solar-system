@@ -7,8 +7,9 @@
 #include <assimp/postprocess.h>
 
 void Model::Draw(Shader& shader, Camera& camera) {
-    for (unsigned int i = 0; i < meshes.size(); i++)
-        meshes[i].Draw(shader, camera);
+    for (unsigned int im = 0; im < meshes.size(); im++) {
+        meshes[im].Draw(shader, camera);
+    }
 }
 
 void Model::loadModel(string filepath) {
@@ -28,7 +29,7 @@ void Model::processNode(aiNode* node, const aiScene* scene) {
     // process all the node's meshes (if any)
     for (unsigned int i = 0; i < node->mNumMeshes; i++) {
         aiMesh *mesh = scene->mMeshes[node->mMeshes[i]]; 
-        meshes.push_back(toMesh(mesh, scene));			
+        meshes.push_back(toMesh(mesh, scene));
     }
     // then do the same for each of its children
     for(unsigned int i = 0; i < node->mNumChildren; i++) {
@@ -54,6 +55,9 @@ Mesh Model::toMesh(aiMesh* mesh, const aiScene* scene) {
         vector.y = mesh->mNormals[iv].y;
         vector.z = mesh->mNormals[iv].z;
         vertex.normal = vector;
+
+        vertex.colour = glm::vec3(1.0f, 1.0f, 1.0f);
+
         // texture coordinates
         if (mesh->mTextureCoords[0]) { // does the mesh contain texture coordinates?
             glm::vec2 vec;
@@ -65,8 +69,11 @@ Mesh Model::toMesh(aiMesh* mesh, const aiScene* scene) {
             vertex.textureCoords = vec;
         }
         else {
+            std::cout << "Mesh does not contain texture coordinates" << std::endl;
             vertex.textureCoords = glm::vec2(0.0f, 0.0f);
         }
+
+        vertices.push_back(vertex);
     }
 
     for (unsigned int iface = 0; iface < mesh->mNumFaces; iface++) {
@@ -96,16 +103,18 @@ vector<Texture> Model::loadMaterialTextures(aiMaterial* mat, TextureType type) {
         aiString str;
         mat->GetTexture(assimpType, it, &str);
 
+        string textureFullPath = directory + '/' + str.C_Str();
+
         bool skip = false;
         for (unsigned int il = 0; il < loadedTextures.size(); il++) {
-            if (strcmp(loadedTextures[il].path.c_str(), str.C_Str()) == 0) {
+            if (strcmp(loadedTextures[il].path.c_str(),textureFullPath.c_str()) == 0) {
                 textures.push_back(loadedTextures[il]);
                 skip = true; // a texture with the same filepath has already been loaded, continue to next one. (optimization)
                 break;
             }
         }
         if (!skip) { // if texture hasn't been loaded already, load it
-            Texture texture(str.C_Str(), type, it);
+            Texture texture(textureFullPath.c_str(), type, it);
             textures.push_back(texture);
             loadedTextures.push_back(texture);  // store it as texture loaded for entire model, to ensure we won't unnecesery load duplicate textures.
         }
