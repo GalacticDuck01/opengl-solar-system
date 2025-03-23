@@ -53,9 +53,9 @@ Texture::Texture(const char* image, TextureType textureType, GLuint slot) {
     glCheckError();
 }
 
-void Texture::TexUnit(Shader& shader, const char* uniform, GLuint unit) {
-    GLuint textureUniformID = glGetUniformLocation(shader.programID, uniform);
-    shader.Activate();
+void Texture::TexUnit(unsigned int shaderID, const char* uniform, GLuint unit) {
+    GLuint textureUniformID = glGetUniformLocation(shaderID, uniform);
+    glUseProgram(shaderID);
     glUniform1i(textureUniformID, unit);
     glCheckError();
 }

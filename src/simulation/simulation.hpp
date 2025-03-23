@@ -18,7 +18,7 @@ class Simulation {
         double timeSinceFPSUpdate = 0.0f;
 
         std::map<int, Shader> shaders;
-        std::map<int, std::vector<Mesh>> meshes;
+        std::map<int, std::vector<Mesh>> drawableObjects;
 
         void Update(float deltaTime);
         void Render();

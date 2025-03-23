@@ -9,12 +9,12 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std:
 
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
+    glGenBuffers(1, &EBO);
 
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, vertices.size()*sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
 
-    glGenBuffers(1, &EBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size()*sizeof(unsigned int), indices.data(), GL_STATIC_DRAW);
 
@@ -38,6 +38,7 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std:
 void Mesh::Draw(Shader& shader, Camera& camera, glm::mat4 matrix, glm::vec3 translation, glm::quat rotation, glm::vec3 scale) {
     shader.Activate();
     glBindVertexArray(VAO);
+    glCheckError();
     unsigned int numOfDiffuseTextures = 0;
     unsigned int numOfSpecularTextures = 0;
     for (unsigned int i = 0; i < textures.size(); i++) {
@@ -49,13 +50,13 @@ void Mesh::Draw(Shader& shader, Camera& camera, glm::mat4 matrix, glm::vec3 tran
             num = std::to_string(numOfSpecularTextures++);
         }
 
-        textures[i].TexUnit(shader, (textures[i].GetTextureTypeAsString() + num).c_str(), i);
+        textures[i].TexUnit(shader.programID, (textures[i].GetTextureTypeAsString() + num).c_str(), i);
         textures[i].Bind();
     }
     // Pass in the camera's position into the shader
     glUniform3f(glGetUniformLocation(shader.programID, "camPos"), camera.position.x, camera.position.y, camera.position.z);
 
-    camera.SendMatrixToShader(shader, "camMatrix");
+    camera.SendMatrixToShader(shader.programID, "camMatrix");
 
     glm::mat4 trans = glm::mat4(1.0f);
     glm::mat4 rot = glm::mat4(1.0f);

@@ -43,13 +43,17 @@ void Camera::UpdateMatrix(float FOVdeg, float nearPlane, float farPlane) {
 }
 
 /**
- * Send the camera matrix to the given shader's uniform.
+ * @brief Sends the camera's transformation matrix to a shader.
+ * 
+ * This function uploads the camera's current transformation matrix to the specified 
+ * shader program, associating it with the given uniform name.
  *
- * @param shader The shader to send the matrix to.
- * @param uniform The name of the uniform in the shader.
+ * @param shaderID The ID of the shader program to which the matrix will be sent.
+ * @param uniform The name of the matrix uniform variable in the shader program.
  */
-void Camera::SendMatrixToShader(Shader& shader, const char* uniform) {
-    glUniformMatrix4fv(glGetUniformLocation(shader.programID, uniform), 1, GL_FALSE, glm::value_ptr(cameraMatrix));
+
+void Camera::SendMatrixToShader(unsigned int shaderID, const char* uniform) {
+    glUniformMatrix4fv(glGetUniformLocation(shaderID, uniform), 1, GL_FALSE, glm::value_ptr(cameraMatrix));
 }
 
 void Camera::HandleInputs(GLFWwindow* window, float deltaTime) {

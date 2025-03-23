@@ -17,7 +17,7 @@
  */
 void Simulation::Run() {
     int shaderProgram = LoadShader("shaders/default.vert", "shaders/default.frag");
-    Icosphere icosphere(glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, 3);
+    Icosphere icosphere(glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, 5);
     icosphere.SetShader(shaderProgram);
     AddDrawable(icosphere);
 
@@ -77,10 +77,11 @@ void Simulation::Update(float deltaTime) {
 void Simulation::Render() {
     glClearColor(0.71f, 0.90f, 0.95f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glCheckError();
 
     camera.UpdateMatrix(45.0f, 0.1f, 100.0f);
 
-    for (auto& mesh : meshes) {
+    for (auto& mesh : drawableObjects) {
         int shaderID = mesh.first;
         std::vector<Mesh>* meshVector = &mesh.second;
 
@@ -90,6 +91,7 @@ void Simulation::Render() {
     }
 
     glfwSwapBuffers(window.window);
+    glCheckError();
 
     glfwPollEvents();
 }
@@ -125,11 +127,11 @@ int Simulation::LoadShader(const char* vertexFilePath, const char* fragmentFileP
 void Simulation::AddDrawable(Icosphere icosphere) {
     int id = icosphere.GetShader();
     // if shader ID not in keys, add it
-    if (meshes.find(id) == meshes.end()) {
-        meshes.insert(std::pair<int, std::vector<Mesh>>(id, std::vector<Mesh>()));
+    if (drawableObjects.find(id) == drawableObjects.end()) {
+        drawableObjects.insert(std::pair<int, std::vector<Mesh>>(id, std::vector<Mesh>()));
     }
 
-    std::vector<Mesh> meshVector = meshes[id];
+    std::vector<Mesh> meshVector = drawableObjects[id];
     meshVector.push_back(icosphere.mesh);
-    meshes[id] = meshVector;
+    drawableObjects[id] = meshVector;
 }
