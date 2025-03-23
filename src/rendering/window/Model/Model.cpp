@@ -2,6 +2,7 @@
 
 #include "../Mesh/Mesh.hpp"
 #include <Camera/Camera.hpp>
+#include <Utilities/Utilities.hpp>
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
@@ -17,7 +18,7 @@ void Model::loadModel(string filepath) {
     const aiScene *scene = importer.ReadFile(filepath, aiProcess_Triangulate | aiProcess_FlipUVs); // See http://assimp.sourceforge.net/lib_html/postprocess_8h.html for a list of available post processing flags
 
     if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
-        cout << "ERROR::ASSIMP::" << importer.GetErrorString() << endl;
+        outputError("Error loading model '" + filepath + "'");
         return;
     }
     directory = filepath.substr(0, filepath.find_last_of('/'));
@@ -69,7 +70,7 @@ Mesh Model::toMesh(aiMesh* mesh, const aiScene* scene) {
             vertex.textureCoords = vec;
         }
         else {
-            std::cout << "Mesh does not contain texture coordinates" << std::endl;
+            outputError(string("Mesh does not contain texture coordinates: '") + mesh->mName.C_Str() + "'");
             vertex.textureCoords = glm::vec2(0.0f, 0.0f);
         }
 

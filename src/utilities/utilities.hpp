@@ -17,3 +17,6 @@ std::string ReadFile(const std::string& filename);
 
 GLenum glCheckError_(const char* file, int line);
 #define glCheckError() glCheckError_(__FILE__, __LINE__)
+
+void outputError_(const std::string& message, const char* file, int line);
+#define outputError(message) outputError_(message, __FILE__, __LINE__)

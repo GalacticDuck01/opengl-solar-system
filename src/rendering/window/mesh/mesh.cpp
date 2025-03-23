@@ -50,7 +50,7 @@ void Mesh::Draw(Shader& shader, Camera& camera, glm::mat4 matrix, glm::vec3 tran
             num = std::to_string(numOfSpecularTextures++);
         }
         else {
-            std::cout << "Unknown texture type: " << type << std::endl;
+            outputError("Unknown texture type '" + std::to_string(type) + "'");
         }
 
         textures[i].SetTextureUnit(shader.programID, (textures[i].GetTextureTypeAsString() + num).c_str(), i);

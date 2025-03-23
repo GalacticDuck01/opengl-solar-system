@@ -13,7 +13,7 @@ std::string ReadFile(const std::string& filename) {
     // Check if file exists
     std::ifstream f(filename);
     if (!f.good()) {
-        std::cout << "Error: File does not exist: " << filename << std::endl;
+        outputError("File does not exist: " + filename);
         return nullptr;
     }
 
@@ -47,4 +47,8 @@ GLenum glCheckError_(const char* file, int line) {
         std::cout << TEXT_RED << "OpenGL Error: " << TEXT_YELLOW << error << TEXT_RESET << " | " << file << " (" << line << ")" << std::endl;
     }
     return errorCode;
+}
+
+void outputError_(const std::string& message, const char* file, int line) {
+    std::cout << TEXT_RED << "Error: " << TEXT_YELLOW << message << TEXT_RESET << " | " << file << " (" << line << ")" << std::endl;
 }

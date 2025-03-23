@@ -21,7 +21,7 @@ Texture::Texture(const char* image, TextureType textureType, GLuint unit) {
     // Check image path exists
     ifstream f(image);
     if (!f.good()) {
-        cout << TEXT_RED << "Error: " << TEXT_YELLOW << "Texture file does not exist: " << image << TEXT_RESET << endl;
+        outputError("Texture file does not exist: " + std::string(image));
         return;
     }
     path = image;
@@ -30,7 +30,7 @@ Texture::Texture(const char* image, TextureType textureType, GLuint unit) {
     stbi_set_flip_vertically_on_load(true);
     unsigned char* data = stbi_load(image, &textureWidth, &textureHeight, &numColourChannels, 0);
     if (!data) {
-        cout << TEXT_RED << "Error: " << TEXT_YELLOW << "Texture file could not be loaded: " << image << TEXT_RESET << endl;
+        outputError("Texture file could not be loaded: " + std::string(image));
         return;
     }
 
@@ -55,7 +55,7 @@ Texture::Texture(const char* image, TextureType textureType, GLuint unit) {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureWidth, textureHeight, 0, GL_RED, GL_UNSIGNED_BYTE, data);
     }
     else {
-        cout << TEXT_RED << "Error: " << TEXT_YELLOW << "Invalid number of colour channels (expected 1, 3, or 4, but got " << numColourChannels << ")" << TEXT_RESET << endl;
+        outputError("Invalid number of colour channels (expected 1, 3, or 4, but got " + std::to_string(numColourChannels) + ")");
         return;
     }
 

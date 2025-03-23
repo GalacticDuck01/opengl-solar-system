@@ -85,9 +85,9 @@ void Simulation::render() {
         int shaderID = mesh.first;
         std::vector<Mesh>* meshVector = &mesh.second;
 
-        // for (auto& mesh : *meshVector) {
-        //     mesh.Draw(shaders.at(shaderID), camera);
-        // }
+        for (auto& mesh : *meshVector) {
+            mesh.Draw(shaders.at(shaderID), camera);
+        }
 
         backpack.Draw(shaders.at(shaderID), camera);
     }

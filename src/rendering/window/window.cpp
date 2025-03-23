@@ -47,7 +47,7 @@ void Window::initWindow() {
     window = glfwCreateWindow(width, height, name.c_str(), NULL, NULL); // Create the GLFW window
 
     if (window == NULL) {
-        std::cout << "Error: Failed to create GLFW window" << std::endl;
+        outputError("Failed to create GLFW window");
         glfwTerminate();
     }
 
@@ -58,7 +58,7 @@ void Window::initWindow() {
 
     // GLAD: Load all OpenGL function pointers
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-        std::cout << "Error: Failed to initialize GLAD" << std::endl;
+        outputError("Failed to initialize GLAD");
     }
 
     // To ensure the correct ordering of textures

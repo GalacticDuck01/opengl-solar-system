@@ -55,14 +55,14 @@ void Shader::CheckForCompilationErrors(GLuint shader, const char* type) {
         glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
         if (!success) {
             glGetShaderInfoLog(shader, 512, NULL, infoLog);
-            std::cout << TEXT_RED << "OpenGL Error: " << TEXT_YELLOW << "SHADER::" << type << "::COMPILATION_FAILED\n" << infoLog << TEXT_RESET << std::endl;
+            outputError("SHADER::" + std::string(type) + "::COMPILATION_FAILED\n" + std::string(infoLog));
         }
     }
     else {
         glGetProgramiv(shader, GL_LINK_STATUS, &success);
         if (!success) {
             glGetProgramInfoLog(shader, 512, NULL, infoLog);
-            std::cout << TEXT_RED << "OpenGL Error: " << TEXT_YELLOW << "SHADER::" << type << "::LINKING_FAILED\n" << infoLog << TEXT_RESET << std::endl;
+            outputError("SHADER::" + std::string(type) + "::LINKING_FAILED\n" + std::string(infoLog));
         }
     }
 }
