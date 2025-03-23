@@ -38,6 +38,7 @@ void Window::InitWindow() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3); // Use OpenGL 3.3
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // Use the core profile
+    glfwWindowHint(GLFW_SAMPLES, 4); // Multisample anti-aliasing (MSSA), use 4 samples
 
 #ifdef __APPLE__
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
@@ -67,6 +68,9 @@ void Window::InitWindow() {
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
     glFrontFace(GL_CCW);
+    
+    // Enable MSAA
+    glEnable(GL_MULTISAMPLE);
 
     // Turn off VSync
     glfwSwapInterval(0);
