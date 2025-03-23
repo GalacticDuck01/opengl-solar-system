@@ -12,3 +12,7 @@
 	path = submodules/stb
 	url = https://github.com/nothings/stb.git
 	branch = master
+[submodule "assimp"]
+	path = submodules/assimp
+	url = https://github.com/assimp/assimp
+	branch = master

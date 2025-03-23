@@ -22,12 +22,9 @@ endif()
 include_directories(submodules/glad/include/
                     submodules/glfw/include/
                     submodules/glm/
-                    submodules/stb/)
-
-find_package(assimp REQUIRED)
-if (assimp_FOUND)
-    include_directories(${ASSIMP_INCLUDE_DIRS})
-endif()
+                    submodules/stb/
+                    submodules/assimp/include/
+                    submodules/assimp/build/include/)
 
 # Set bin directory
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY  ${CMAKE_CURRENT_SOURCE_DIR}/bin)
