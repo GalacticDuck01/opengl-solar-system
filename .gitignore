@@ -39,7 +39,6 @@ bin/
 build/
 include/
 lib/
-deps/
 
 # Ignore .DS_Store
 .DS_Store

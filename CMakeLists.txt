@@ -22,8 +22,12 @@ endif()
 include_directories(deps/glad/include/
                     deps/glfw/include/
                     deps/glm/
-                    deps/stb/
-                    deps/json/single_include/nlohmann/)
+                    deps/stb/)
+
+find_package(assimp REQUIRED)
+if (assimp_FOUND)
+    include_directories(${ASSIMP_INCLUDE_DIRS})
+endif()
 
 # Set bin directory
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY  ${CMAKE_CURRENT_SOURCE_DIR}/bin)
@@ -57,4 +61,4 @@ add_executable(${PROJECT_NAME} ${CPP_SOURCES} ${C_SOURCES} ${DEP_SOURCES} ${HPP_
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR})
 
-target_link_libraries(${PROJECT_NAME} glfw ${GLFW_LIBRARIES} ${GLAD_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} glfw ${GLFW_LIBRARIES} ${GLAD_LIBRARIES} assimp)
