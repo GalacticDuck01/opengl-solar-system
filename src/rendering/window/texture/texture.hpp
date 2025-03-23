@@ -1,6 +1,9 @@
 #pragma once
 
+using namespace std;
+
 #include <map>
+#include <string>
 #include <glad/glad.h>
 #include <Shader/Shader.hpp>
 
@@ -11,6 +14,7 @@ enum TextureType {
 
 class Texture {
     public:
+        string path;
         GLuint id;
         TextureType type;
         GLuint unit;
@@ -26,7 +30,7 @@ class Texture {
 
     private:
         // Textures will be named "diffuse0", "diffuse1", "specular0", "specular1", etc.
-        std::map <TextureType, const char*> textureTypeToString = {
+        map <TextureType, const char*> textureTypeToString = {
             {TextureType::DIFFUSE, "diffuse"},
             {TextureType::SPECULAR, "specular"}
         };
