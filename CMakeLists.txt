@@ -4,7 +4,7 @@ project(SolarSystem)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_subdirectory(deps/glfw)
+add_subdirectory(glfw)
 
 if(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
@@ -19,10 +19,10 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
 endif()
 
-include_directories(deps/glad/include/
-                    deps/glfw/include/
-                    deps/glm/
-                    deps/stb/)
+include_directories(glad/include/
+                    glfw/include/
+                    glm/
+                    stb/)
 
 find_package(assimp REQUIRED)
 if (assimp_FOUND)
@@ -49,7 +49,7 @@ file(GLOB_RECURSE HPP_HEADERS "${SRC_DIR}/*.hpp")
 file(GLOB_RECURSE INC_HEADERS "${INC_DIR}/*.h")
 
 # Find required dependency files
-file(GLOB DEP_SOURCES deps/glad/src/glad.c)
+file(GLOB DEP_SOURCES glad/src/glad.c)
 
 # Add all source files to the project
 include_directories(${SRC_DIR})
